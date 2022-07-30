@@ -1,5 +1,5 @@
-import * as PIXI from 'pixi.js';
-import { SeatOptions } from './types';
+import * as PIXI from "pixi.js";
+import { SeatOptions } from "./types";
 
 export default class ScalingSeat {
   private rowScaled: PIXI.Text[][] = [];
@@ -10,7 +10,7 @@ export default class ScalingSeat {
 
   constructor(
     readonly container: PIXI.Container,
-    readonly app: PIXI.Application,
+    readonly app: PIXI.Application
   ) {}
 
   createRow(seatsPerRow: number) {
@@ -18,25 +18,25 @@ export default class ScalingSeat {
     for (let scale = 1; scale <= this.SCALE_FRAMES; scale += 1) {
       const row = [];
       for (let i = 1; i <= seatsPerRow; i += 1) {
-        const text = new PIXI.Text('\u25EF', {
+        const text = new PIXI.Text("\u25EF", {
           fontSize: fontSize * scale,
-          fontFamily: 'Arial',
-          fill: '#00eaff',
-          lineJoin: 'round',
+          fontFamily: "Arial",
+          fill: "#00eaff",
+          lineJoin: "round",
         });
         text.x = i * 1.2 * fontSize * scale + 20;
         text.y = 40;
 
         text.interactive = true;
         text.buttonMode = true;
-        text.on('click', () => {
+        text.on("click", () => {
           const seatIndex = this.container.getChildIndex(text);
-          if (text.style.fill === '#00eaff') {
-            this.updateSeat(seatIndex, { color: '#b42eb4' });
-            text.style.fill = '#b42eb4';
+          if (text.style.fill === "#00eaff") {
+            this.updateSeat(seatIndex, { color: "#b42eb4" });
+            text.style.fill = "#b42eb4";
           } else {
-            this.updateSeat(seatIndex, { color: '#00eaff' });
-            text.style.fill = '#00eaff';
+            this.updateSeat(seatIndex, { color: "#00eaff" });
+            text.style.fill = "#00eaff";
           }
         });
         row.push(text);

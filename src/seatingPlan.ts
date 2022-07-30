@@ -1,5 +1,5 @@
-import * as PIXI from 'pixi.js';
-import '@pixi/graphics-extras';
+import * as PIXI from "pixi.js";
+import "@pixi/graphics-extras";
 
 type SEAT_GEOMETRY = PIXI.Sprite | PIXI.Graphics;
 
@@ -10,13 +10,13 @@ export default class SeatingPlan {
 
   constructor(
     readonly container: PIXI.Container,
-    readonly app: PIXI.Application,
+    readonly app: PIXI.Application
   ) {}
 
   addSeatEvent(seat: SEAT_GEOMETRY) {
     seat.interactive = true;
     seat.buttonMode = true;
-    seat.on('pointerdown', () => {
+    seat.on("pointerdown", () => {
       if (seat.tint === this.SELECTED_SEAT) {
         seat.tint = this.FREE_SEAT;
       } else {
@@ -29,7 +29,7 @@ export default class SeatingPlan {
     const RADIUS = 50;
     let radiusScalable = RADIUS;
     let seats = seatsPerRow;
-    const seatTexture = PIXI.Texture.from('images/seat.svg');
+    const seatTexture = PIXI.Texture.from("images/seat.svg");
     for (let i = 0; i < rows; i += 1) {
       // Если количество мест возрастает с увеличением номером ряда
       seats += 1;
@@ -38,10 +38,10 @@ export default class SeatingPlan {
         const seat = PIXI.Sprite.from(seatTexture);
         seat.anchor.set(0.5);
         seat.position.set(
-          (100 * seats) / seatsPerRow
-            + Math.cos(((0.6 * j) / seats) * Math.PI) * radiusScalable,
-          (100 * seats) / seatsPerRow
-            + Math.sin(((0.6 * j) / seats) * Math.PI) * radiusScalable,
+          (100 * seats) / seatsPerRow +
+            Math.cos(((0.6 * j) / seats) * Math.PI) * radiusScalable,
+          (100 * seats) / seatsPerRow +
+            Math.sin(((0.6 * j) / seats) * Math.PI) * radiusScalable
         );
         this.addSeatEvent(seat);
         this.container.addChild(seat);
@@ -62,11 +62,11 @@ export default class SeatingPlan {
         seat.beginFill(this.FREE_SEAT);
         seat.lineStyle({ width: 1 });
         seat.drawCircle(
-          (100 * seats) / seatsPerRow
-            + Math.cos(((0.6 * j) / seats) * Math.PI) * radiusScalable,
-          (100 * seats) / seatsPerRow
-            + Math.sin(((0.6 * j) / seats) * Math.PI) * radiusScalable,
-          4,
+          (100 * seats) / seatsPerRow +
+            Math.cos(((0.6 * j) / seats) * Math.PI) * radiusScalable,
+          (100 * seats) / seatsPerRow +
+            Math.sin(((0.6 * j) / seats) * Math.PI) * radiusScalable,
+          4
         );
         seat.endFill();
         seat.x += 200;

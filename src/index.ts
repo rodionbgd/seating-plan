@@ -1,6 +1,6 @@
-import * as PIXI from 'pixi.js';
-import ScalingSeat from './scaling';
-import SeatingPlan from './seatingPlan';
+import * as PIXI from "pixi.js";
+import ScalingSeat from "./scaling";
+import SeatingPlan from "./seatingPlan";
 
 const app = new PIXI.Application({
   width: window.innerWidth,
@@ -32,8 +32,8 @@ function showSector() {
   seatingPlan.createSectorByGraphics(5, 10);
 }
 
-const mode = <HTMLInputElement>document.getElementById('mode');
-mode.addEventListener('input', () => {
+const mode = <HTMLInputElement>document.getElementById("mode");
+mode.addEventListener("input", () => {
   if (mode.checked) {
     showScale();
   } else {
